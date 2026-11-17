@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net" agent="GitHub Copilot">
+  <diagram id="chatapp-dfd" name="Chatapp Data Flow Diagram">
+    <mxGraphModel dx="1407" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#0C1830;" value="Jev-Enhanced AI Chatbot: Data Flow Diagram" vertex="1">
+          <mxGeometry height="40" width="760" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#5E6D82;" value="chatapp.py: Streamlit input, Jev System One routing, OpenAI generation, and telemetry" vertex="1">
+          <mxGeometry height="24" width="850" x="42" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFFFFF;strokeColor=#0C1830;fontColor=#0C1830;" value="User" vertex="1">
+          <mxGeometry height="90" width="60" x="45" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="streamlit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F7F8;strokeColor=#00ADB5;fontColor=#0C1830;fontSize=16;fontStyle=1;" value="Streamlit Chat UI&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;st.chat_input()&lt;br&gt;session history&lt;br&gt;telemetry expander&lt;/font&gt;" vertex="1">
+          <mxGeometry height="145" width="175" x="155" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="config" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7FAFC;strokeColor=#5E6D82;fontColor=#0C1830;fontSize=15;fontStyle=1;" value="Configuration Sources&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;.env via load_dotenv()&lt;br&gt;Streamlit secrets when available&lt;br&gt;OPENAI_API_KEY / TYPESAFE_API_KEY&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="210" x="155" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="process" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F1;strokeColor=#FF6B6B;fontColor=#0C1830;fontSize=16;fontStyle=1;" value="process_chat_message(user_message)&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Builds telemetry and applies routing rules&lt;/font&gt;" vertex="1">
+          <mxGeometry height="145" width="210" x="400" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="jev" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F7F8;strokeColor=#00ADB5;fontColor=#0C1830;fontSize=16;fontStyle=1;" value="TypeSafe AI Jev&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;jev_client.system_one()&lt;br&gt;Noul: safety risk&lt;br&gt;Choice: intent + confidence&lt;br&gt;Score: urgency&lt;/font&gt;" vertex="1">
+          <mxGeometry height="165" width="200" x="680" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="safety" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF1F1;strokeColor=#FF6B6B;fontColor=#0C1830;fontSize=15;fontStyle=1;" value="Safety risk &gt; 0.75?" vertex="1">
+          <mxGeometry height="90" width="145" x="950" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="block" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0E0;strokeColor=#FF6B6B;fontColor=#0C1830;fontSize=15;fontStyle=1;" value="Block response&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Policy message&lt;br&gt;No OpenAI call&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="175" x="1165" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="greeting" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8D7;strokeColor=#E9B949;fontColor=#0C1830;fontSize=14;fontStyle=1;" value="Known greeting&lt;br&gt;and urgency &lt; 0.5?" vertex="1">
+          <mxGeometry height="95" width="145" x="950" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="fast" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8D7;strokeColor=#E9B949;fontColor=#0C1830;fontSize=15;fontStyle=1;" value="Fast-path greeting&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Direct response&lt;br&gt;No OpenAI call&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="175" x="1165" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="openai" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1EDFF;strokeColor=#7357D8;fontColor=#0C1830;fontSize=16;fontStyle=1;" value="OpenAI Chat Completions&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;gpt-4o-mini&lt;br&gt;System prompt includes intent + urgency&lt;br&gt;Returns generated reply&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="205" x="1160" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="telemetry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7FAFC;strokeColor=#5E6D82;fontColor=#0C1830;fontSize=15;fontStyle=1;" value="Response + Telemetry&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;safety_risk&lt;br&gt;intent / confidence&lt;br&gt;urgency&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="190" x="710" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="history" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7FAFC;strokeColor=#5E6D82;fontColor=#0C1830;fontSize=15;fontStyle=1;" value="st.session_state.messages&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Stores user input,&lt;br&gt;assistant reply, and telemetry&lt;/font&gt;" vertex="1">
+          <mxGeometry height="105" width="210" x="400" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0C1830;fontSize=12;" target="streamlit" value="User message">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="streamlit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0C1830;fontSize=12;" target="process" value="user_message">
+          <mxGeometry relative="1" x="0.4286" y="-32" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="config" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5E6D82;fontSize=12;" target="process" value="API keys">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="process" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#00ADB5;fontSize=12;" target="jev" value="state + 3 questions">
+          <mxGeometry relative="1" x="0.4286" y="-52" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="jev" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#00ADB5;fontSize=12;" target="safety" value="safety / intent / urgency">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="safety" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#FF6B6B;fontSize=12;" target="block" value="Yes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="safety" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0C1830;fontSize=12;" target="greeting" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="greeting" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#E9B949;fontSize=12;" target="fast" value="Yes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="greeting" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7357D8;fontSize=12;" target="openai" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5E6D82;fontSize=12;" target="telemetry" value="reply + telemetry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="fast" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5E6D82;fontSize=12;" target="telemetry" value="reply + telemetry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="openai" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5E6D82;fontSize=12;" target="telemetry" value="reply + telemetry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="telemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5E6D82;fontSize=12;" target="history" value="append">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="history" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5E6D82;fontSize=12;" target="streamlit" value="render response + metrics">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
